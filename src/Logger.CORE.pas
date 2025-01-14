@@ -20,6 +20,7 @@ type
     function LogName: String;
     procedure SettingUPLogger;
     function DefType(aType: TLogLevel): string;
+    function NormalizeInput(const AText: string): string;
   public
     constructor Create; overload;
     constructor Create(ALogName: string); overload;
@@ -52,7 +53,8 @@ begin
   Append(FLogFile);
   try
     Writeln(FLogFile, Format('| [%s] | %s | %s | - %s | [%s] |',
-      [DateToStr(Now), DefType(aType), LUser, aLogMessage, TimeToStr(Now)]));
+      [DateToStr(Now), DefType(aType), LUser, NormalizeInput(aLogMessage),
+      TimeToStr(Now)]));
   finally
     CloseFile(FLogFile);
   end;
@@ -113,6 +115,21 @@ end;
 function TLogger.LogsDir: string;
 begin
   Result := FDir;
+end;
+
+function TLogger.NormalizeInput(const AText: string): string;
+begin
+  if AText.IsEmpty then
+  begin
+    Result := 'LOG NOT ADDED :(';
+    Exit;
+  end;
+
+  Result := StringReplace(AText, sLineBreak, ' ', [rfReplaceAll]);
+  Result := StringReplace(Result, #13, ' ', [rfReplaceAll]);
+  Result := StringReplace(Result, #10, ' ', [rfReplaceAll]);
+  Result := StringReplace(Result, '|', ' ', [rfReplaceAll]);
+
 end;
 
 procedure TLogger.SettingUPLogger;
