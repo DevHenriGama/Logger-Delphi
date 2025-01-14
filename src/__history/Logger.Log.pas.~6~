@@ -10,6 +10,7 @@ type
   TLog = class(TInterfacedObject, ILog)
   private
     FLogger: TLogger;
+    FLogName: String;
   public
     constructor Create; overload;
     constructor Create(ALogName: string); overload;
@@ -24,7 +25,7 @@ type
 
 function Log: ILog;
 
-function cLog(ALogName: string): ILog;
+function cLog(ALogName): ILog;
 
 implementation
 
@@ -38,9 +39,9 @@ begin
   Result := TLog.Create;
 end;
 
-function cLog(ALogName: string): ILog;
+function cLog(ALogName): ILog;
 begin
-  Result := TLog.Create(ALogName);
+
 end;
 
 procedure TLog.Add(aLogMessage: String; aType: TLogLevel; AUser: string);
@@ -55,7 +56,7 @@ end;
 
 procedure TLog.Add(aLogMessage: string);
 begin
-  FLogger.Add(aLogMessage, DefaultUser);
+  FLogger.Add(aLogMessage);
 end;
 
 constructor TLog.Create(ALogName: string);

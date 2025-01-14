@@ -11,8 +11,7 @@ type
   private
     FLogger: TLogger;
   public
-    constructor Create; overload;
-    constructor Create(ALogName: string); overload;
+    constructor Create;
     destructor Destroy; override;
     class function New: ILog;
     procedure Add(aLogMessage: String; aType: TLogLevel = Info;
@@ -24,8 +23,6 @@ type
 
 function Log: ILog;
 
-function cLog(ALogName: string): ILog;
-
 implementation
 
 uses
@@ -36,11 +33,6 @@ uses
 function Log: ILog;
 begin
   Result := TLog.Create;
-end;
-
-function cLog(ALogName: string): ILog;
-begin
-  Result := TLog.Create(ALogName);
 end;
 
 procedure TLog.Add(aLogMessage: String; aType: TLogLevel; AUser: string);
@@ -55,12 +47,7 @@ end;
 
 procedure TLog.Add(aLogMessage: string);
 begin
-  FLogger.Add(aLogMessage, DefaultUser);
-end;
-
-constructor TLog.Create(ALogName: string);
-begin
-  FLogger := TLogger.Create(ALogName);
+  FLogger.Add(aLogMessage);
 end;
 
 constructor TLog.Create;
@@ -76,7 +63,7 @@ end;
 
 function TLog.LogsDir: string;
 begin
-  Result := FLogger.LogsDir;
+
 end;
 
 class function TLog.New: ILog;

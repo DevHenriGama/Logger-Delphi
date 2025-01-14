@@ -60,7 +60,7 @@ end;
 
 procedure TLogger.Add(aLogMessage: string);
 begin
-  Self.Add(aLogMessage, TLogLevel.Error, DefaultUser);
+  Self.Add(aLogMessage, TLogLevel.Error, 'System');
 end;
 
 constructor TLogger.Create(ALogName: string);

@@ -12,11 +12,10 @@ type
   private
     FLogFile: TextFile;
     FDir: String;
-    FSettedName: string;
 
   const
     _LogAttr = 'Logger - ';
-
+    FSettedName: string;
     function LogName: String;
     procedure SettingUPLogger;
     function DefType(aType: TLogLevel): string;
@@ -60,7 +59,7 @@ end;
 
 procedure TLogger.Add(aLogMessage: string);
 begin
-  Self.Add(aLogMessage, TLogLevel.Error, DefaultUser);
+  Self.Add(aLogMessage, TLogLevel.Error, 'System');
 end;
 
 constructor TLogger.Create(ALogName: string);

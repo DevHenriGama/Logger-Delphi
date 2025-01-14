@@ -11,12 +11,10 @@ type
   TLogger = class
   private
     FLogFile: TextFile;
-    FDir: String;
-    FSettedName: string;
 
   const
     _LogAttr = 'Logger - ';
-
+    FSettedName: string;
     function LogName: String;
     procedure SettingUPLogger;
     function DefType(aType: TLogLevel): string;
@@ -60,7 +58,7 @@ end;
 
 procedure TLogger.Add(aLogMessage: string);
 begin
-  Self.Add(aLogMessage, TLogLevel.Error, DefaultUser);
+  Self.Add(aLogMessage, TLogLevel.Error, 'System');
 end;
 
 constructor TLogger.Create(ALogName: string);
@@ -112,12 +110,12 @@ end;
 
 function TLogger.LogsDir: string;
 begin
-  Result := FDir;
+
 end;
 
 procedure TLogger.SettingUPLogger;
 var
-  FFile: string;
+  FDir, FFile: string;
 begin
 {$IFDEF LINUX}
   FDir := ExtractFilePath(ParamStr(0)) + 'Logs/';

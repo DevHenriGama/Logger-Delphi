@@ -1,0 +1,10 @@
+unit Logger.Types;
+
+interface
+
+type
+  TLogLevel = (Info, Warning, Error, Unknow, Sys, Default);
+
+implementation
+
+end.
