@@ -1,0 +1,14 @@
+{
+	"hash": "d41d8cd98f00b204e9800998ecf8427e",
+	"updated": "2025-01-15T14:40:33.5133176-03:00",
+	"installedModules": {
+		"https://github.com/devhenrigama/jaysettings-delphi": {
+			"name": "jaysettings-delphi",
+			"version": "main",
+			"hash": "2097fc10349061fa5e95b434f350cbd1",
+			"artifacts": {},
+			"failed": false,
+			"changed": false
+		}
+	}
+}
